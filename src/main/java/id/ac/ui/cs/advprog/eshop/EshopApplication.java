@@ -1,4 +1,4 @@
-package id.ac.ui.cs.hadvprog.eshop;
+package id.ac.ui.cs.advprog.eshop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
