@@ -28,6 +28,16 @@ public class ProductRepository {
                 .orElse(null);
     }
 
+    public Product edit(Product changes, UUID productId) {
+        Product product = findById(productId);
+
+        if (product != null) {
+            product.setProductName(changes.getProductName());
+            product.setProductQuantity(changes.getProductQuantity());
+        }
+        return product;
+    }
+
     public void delete(UUID productId) {
         productData.removeIf(product -> product.getProductId().equals(productId));
     }
