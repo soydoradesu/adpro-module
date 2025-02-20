@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 @RequestMapping("/")
 public class HomepageController {
-    @GetMapping(("/"))
-    public String Homepage() {
+    @GetMapping("/")
+    public String homepage() { // Renamed from Homepage() to homepage()
         return "Homepage";
     }
 }

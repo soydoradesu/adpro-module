@@ -19,7 +19,7 @@ public class HomepageControllerTest {
 
     @Test
     void testHomepage() {
-        String viewName = homepageController.Homepage();
+        String viewName = homepageController.homepage();
         assertEquals("Homepage", viewName);
     }
 }
