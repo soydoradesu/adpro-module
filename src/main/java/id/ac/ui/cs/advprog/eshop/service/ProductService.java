@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ProductService {
-    public Product create(Product product);
-    public List<Product> findAll();
-    public Product findById(UUID productId);
-    public void delete(UUID productId);
-    public Product edit(Product changes, UUID productId);
+    Product create(Product product);
+    List<Product> findAll();
+    Product findById(UUID productId);
+    void delete(UUID productId);
+    Product edit(Product changes, UUID productId);
 }

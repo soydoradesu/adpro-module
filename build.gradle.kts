@@ -5,7 +5,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.7"
 }
 
-group = "id.ac.ui.cs.hadvprog"
+group = "id.ac.ui.cs.advprog"
 version = "0.0.1-SNAPSHOT"
 
 java {
@@ -62,18 +62,17 @@ tasks.register<Test>("functionalTest") {
     }
 }
 
-tasks.withType<Test>().configureEach {
-    useJUnitPlatform()
-}
-
 tasks.test {
     filter {
         excludeTestsMatching("*FunctionalTest")
     }
-
     finalizedBy(tasks.jacocoTestReport)
 }
 
 tasks.jacocoTestReport {
     dependsOn(tasks.test)
+}
+
+tasks.withType<Test>().configureEach {
+    useJUnitPlatform()
 }
