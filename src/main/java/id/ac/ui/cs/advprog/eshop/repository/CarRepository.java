@@ -34,17 +34,15 @@ public class CarRepository {
         return null;
     }
 
-    public Car update(String id, Car updatedCar) {
-        for (int i = 0; i < carData.size(); i++) {
-            Car car = carData.get(i);
+    public void update(String id, Car updatedCar) {
+        for (Car car : carData) {
             if (car.getCarId().equals(id)) {
                 car.setCarName(updatedCar.getCarName());
                 car.setCarColor(updatedCar.getCarColor());
                 car.setCarQuantity(updatedCar.getCarQuantity());
-                return car;
+                return;
             }
         }
-        return null;
     }
 
     public void delete(String id) {

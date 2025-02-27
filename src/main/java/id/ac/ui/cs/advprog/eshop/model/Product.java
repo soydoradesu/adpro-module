@@ -10,8 +10,4 @@ public class Product {
     private UUID productId;
     private String productName;
     private int productQuantity;
-
-    public Product() {
-        this.productId = UUID.randomUUID();
-    }
 }
