@@ -1,6 +1,8 @@
 package id.ac.ui.cs.advprog.eshop.service;
 
 import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 import id.ac.ui.cs.advprog.eshop.model.Order;
 import id.ac.ui.cs.advprog.eshop.model.Payment;
 import id.ac.ui.cs.advprog.eshop.model.Product;
@@ -73,40 +75,41 @@ class PaymentServiceTest {
         codPayment.put("address", "Kukusan");
         codPayment.put("deliveryFee", "20000");
 
-        mockPayment = new Payment("VOUCHER_CODE", voucherPayment, mockOrder);
+        mockPayment = new Payment(PaymentMethod.VOUCHER_CODE.getValue(), voucherPayment, mockOrder);
     }
 
     @Test
     void testAddPaymentVoucherCode() {
-        when(paymentRepository.addPayment(eq("VOUCHER_CODE"), anyMap(), any(Order.class))).thenReturn(mockPayment);
+        when(paymentRepository.addPayment(eq(PaymentMethod.VOUCHER_CODE.getValue()), anyMap(), any(Order.class)))
+                .thenReturn(mockPayment);
 
-        Payment payment = paymentService.addPayment(mockOrder, "VOUCHER_CODE", voucherPayment);
+        Payment payment = paymentService.addPayment(mockOrder, PaymentMethod.VOUCHER_CODE.getValue(), voucherPayment);
 
         assertNotNull(payment);
-        assertEquals("VOUCHER_CODE", payment.getPaymentMethod());
+        assertEquals(PaymentMethod.VOUCHER_CODE.getValue(), payment.getPaymentMethod());
         assertEquals("ESHOP1234ABC5678", payment.getPaymentData().get("voucherCode"));
-        verify(paymentRepository, times(1)).addPayment(eq("VOUCHER_CODE"), anyMap(), any(Order.class));
+        verify(paymentRepository, times(1)).addPayment(eq(PaymentMethod.VOUCHER_CODE.getValue()), anyMap(), any(Order.class));
     }
 
     @Test
     void testAddPaymentCOD() {
-        Payment codMockPayment = new Payment("COD", codPayment, mockOrder);
-        when(paymentRepository.addPayment(eq("COD"), anyMap(), any(Order.class))).thenReturn(codMockPayment);
+        Payment codMockPayment = new Payment(PaymentMethod.COD.getValue(), codPayment, mockOrder);
+        when(paymentRepository.addPayment(eq(PaymentMethod.COD.getValue()), anyMap(), any(Order.class))).thenReturn(codMockPayment);
 
-        Payment payment = paymentService.addPayment(mockOrder, "COD", codPayment);
+        Payment payment = paymentService.addPayment(mockOrder, PaymentMethod.COD.getValue(), codPayment);
 
         assertNotNull(payment);
-        assertEquals("COD", payment.getPaymentMethod());
+        assertEquals(PaymentMethod.COD.getValue(), payment.getPaymentMethod());
         assertEquals("Kukusan", payment.getPaymentData().get("address"));
         assertEquals("20000", payment.getPaymentData().get("deliveryFee"));
-        verify(paymentRepository, times(1)).addPayment(eq("COD"), anyMap(), any(Order.class));
+        verify(paymentRepository, times(1)).addPayment(eq(PaymentMethod.COD.getValue()), anyMap(), any(Order.class));
     }
 
     @Test
     void testSetStatus() {
         when(paymentRepository.setStatus(any(Payment.class), anyString())).thenReturn(mockPayment);
 
-        Payment updatedPayment = paymentService.setStatus(mockPayment, "SUCCESS");
+        Payment updatedPayment = paymentService.setStatus(mockPayment, PaymentStatus.SUCCESS.getValue());
 
         assertNotNull(updatedPayment);
         assertEquals(mockPayment, updatedPayment);
