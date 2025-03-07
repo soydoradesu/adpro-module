@@ -70,7 +70,7 @@ Setelah melalui tahapan-tahapan tersebut, perubahan kode akan di-merge ke branch
 ![img.png](src/main/resources/static/img.png)
 </details>
 
-<details open>
+<details>
     <summary><h2>Module 3</h2></summary>
 
 # Reflection 1
@@ -105,5 +105,21 @@ Berlawanan pada jawaban di atas, apabila kita tidak menggunakan SOLID, kode akan
 
 - Modifikasi dapat merusak bagian lain
   Jika Open/Closed Principle (OCP) tidak diterapkan, setiap kali kita ingin menambahkan fitur baru, kita harus mengubah kode lama. Misalnya, jika kita ingin menambahkan `MonsterTruckController` dan harus mengedit `CarController` untuk menyesuaikan, kita bisa secara tidak sengaja menambahkan bug pada fitur yang sudah ada dan bekerja dengan baik.
+
+</details>
+
+<details open>
+    <summary><h2>Module 4</h2></summary>
+
+# Reflection 1
+
+## 1. TDD Useful atau tidak?
+Menurut saya, TTD useful karena memiliki lumayan banyak manfaat, di antaranya:
+- Mencegah over-engineering, karena saya hanya akan menulis code yang diperlukan dalam test
+- Mempermudah refactoring, karena jika saya ingin meng-improve code, saya lebih percaya diri karena ada test yanng bisa memastikan bahwa modifikasi tidak merusak fungsionalitas yang ada
+- Meningkatkan kualitas kode, karena saya tentunya lebih yakin bahwa kode saya sudah terhindar dari bug apabila lulus testing
+
+## 2. Apakah sudah cukup mengikuti prinsip F.I.R.S.T?
+Unit test yang saya buat sudah cukup mengikuti prinsip F.I.R.S.T., namun masih ada beberapa aspek yang perlu ditingkatkan. Misalnya, beberapa test masih kurang independen karena ada ketergantungan antar-test yang bisa mempengaruhi hasil. Ke depannya, saya harus memastikan setiap test benar-benar independen dan dapat dijalankan secara terpisah. Selain itu, saya juga perlu memperhatikan scope testing agar lebih banyak edge cases yang diuji, serta memastikan setiap test memiliki fokus yang jelas untuk satu fungsi tertentu saja. Hal ini akan meningkatkan efektivitas dan kualitas dari unit test yang saya buat.
 
 </details>
