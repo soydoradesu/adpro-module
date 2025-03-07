@@ -1,6 +1,8 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
 import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -148,7 +150,7 @@ public class PaymentTest {
     @Test
     void testPaymentStatusRejected() {
         Payment payment = new Payment("4f95549b-19d5-43d8-9267-6cc37c5ae0a8", PaymentMethod.VOUCHER_CODE.getValue(),
-                PaymentStatus.WAITING.getValue(), voucherCodePayment, order);
+                PaymentStatus.WAITING.getValue(), voucherPayment, order);
         payment.setPaymentStatus(PaymentStatus.REJECTED.getValue());
         assertEquals(PaymentStatus.REJECTED.getValue(), payment.getPaymentStatus());
     }
@@ -156,15 +158,15 @@ public class PaymentTest {
     @Test
     void testPaymentStatusVoucherCodeValid() {
         Payment payment = new Payment("4f95549b-19d5-43d8-9267-6cc37c5ae0a8", PaymentMethod.VOUCHER_CODE.getValue(),
-                PaymentStatus.WAITING.getValue(), voucherCodePayment, order);
+                PaymentStatus.WAITING.getValue(), voucherPayment, order);
         assertEquals(PaymentStatus.WAITING.getValue(), payment.getPaymentStatus());
     }
 
     @Test
     void testPaymentStatusVoucherCodeInvalid() {
-        voucherCodePayment.put("voucherCode", "ESHOP1234ABC567X");
+        voucherPayment.put("voucherCode", "ESHOP1234ABC567X");
         Payment payment = new Payment("4f95549b-19d5-43d8-9267-6cc37c5ae0a8", PaymentMethod.VOUCHER_CODE.getValue(),
-                PaymentStatus.WAITING.getValue(), voucherCodePayment, order);
+                PaymentStatus.WAITING.getValue(), voucherPayment, order);
         assertEquals(PaymentStatus.REJECTED.getValue(), payment.getPaymentStatus());
     }
 
